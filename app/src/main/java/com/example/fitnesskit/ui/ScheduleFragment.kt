@@ -14,7 +14,6 @@ import com.example.fitnesskit.data.LessonEntity
 import com.example.fitnesskit.data.Training
 import com.example.fitnesskit.data.TrainingType
 import com.example.fitnesskit.databinding.FragmentMainBinding
-import com.example.fitnesskit.App
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +45,7 @@ class ScheduleFragment : Fragment() {
         }
     }
 
-    fun sortLessons(body: Training): ArrayList<LessonEntity> {
+    private fun sortLessons(body: Training): ArrayList<LessonEntity> {
         val list = body.lessons.sortedByDescending {
             it.formatedDate
         }
@@ -58,7 +57,7 @@ class ScheduleFragment : Fragment() {
         }
 
         val newList = ArrayList<LessonEntity>()
-        map.forEach() { entry ->
+        map.forEach { entry ->
             newList.add(LessonEntity(type = TrainingType.HEADER, null, entry.key))
             entry.value.mapTo(newList) {
                 LessonEntity(type = TrainingType.TRAIN, it, null)
